@@ -2,7 +2,6 @@ package com.glosoft.inventory_service.item;
 
 //import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +23,11 @@ public class Items {
 
 
     public List<Item> getItemsByCategory(Long categoryId) {
-        return item.getAll().stream().filter(itm -> categoryId == itm.getCategoryId()).collect(Collectors.toList());
+        List<Item> allItems = item.getAll();
+        List<Item> categoryItems = allItems.stream().filter(itm -> categoryId == itm.getCategoryId()).collect(Collectors.toList());
+        return categoryItems;
+
+        //return item.getAll().stream().filter(itm -> categoryId == itm.getCategoryId()).collect(Collectors.toList());
     }
 
 }
